@@ -1,0 +1,18 @@
+{
+	"name": "@rektide/rust-email-address-wasm",
+	"version": "0.1.0",
+	"type": "module",
+	"main": "wasm/rust-email-address-wasm.js",
+	"types": "wasm/rust-email-address-wasm.d.ts",
+	"files": [
+		"wasm/"
+	],
+	"scripts": {
+		"cargo-build:debug": "cargo rustc --target wasm32-unknown-unknown --crate-type cdylib",
+		"cargo-build": "cargo rustc --target wasm32-unknown-unknown --release --crate-type cdylib",
+		"wasm": "wasm-bindgen target/wasm32-unknown-unknown/release/email_address.wasm --out-dir wasm --target bundler",
+		"wasm:debug": "wasm-bindgen target/wasm32-unknown-unknown/debug/email_address.wasm --out-dir wasm --target bundler",
+		"build:debug": "npm run cargo-build:debug && npm run wasm:debug",
+		"build": "npm run cargo-build && npm run wasm"
+	}
+}
